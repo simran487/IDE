@@ -1,0 +1,223 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0; /* Prevents default body margin */
+    overflow: hidden; /* Prevents unintended scrollbars */
+}
+
+/* Default light-mode styling */
+body.light-mode {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+body.light-mode header,
+body.light-mode .mode-select,
+body.light-mode #source-code,
+body.light-mode #output-section,
+body.light-mode textarea,
+body.light-mode #user-input,
+body.light-mode #algo-mode,
+body.light-mode #language,
+body.light-mode .CodeMirror,
+body.light-mode .CodeMirror-scroll,
+body.light-mode .CodeMirror-gutters {
+    background-color: #e0e0e0;
+    color: #000000;
+}
+
+/* Default dark-mode styling */
+body.dark-mode {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+body.dark-mode header,
+body.dark-mode .mode-select,
+body.dark-mode #source-code,
+body.dark-mode #output-section,
+body.dark-mode textarea,
+body.dark-mode #user-input,
+body.dark-mode #algo-mode,
+body.dark-mode #language,
+body.dark-mode .CodeMirror,
+body.dark-mode .CodeMirror-scroll,
+body.dark-mode .CodeMirror-gutters {
+    background-color: #1e1e1e;
+    color: #FFFFFF;
+}
+
+/* Header */
+header {
+    width: 100%;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4CAF50;
+}
+
+/* Theme Switcher */
+.mode-select {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3em;
+}
+
+/* Main Container for Source and Algorithm Sections */
+.main-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 210px);
+    gap: 0.5em;
+}
+
+/* Section Styling */
+.section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+}
+
+/* Source Code Section Styling */
+#source-code {
+    flex: 1;
+    border-radius: 5px;
+    padding: 1em;
+}
+
+/* Output Section */
+#output-section {
+    width: 100%;
+    height: 20vh;
+    padding: 1em;
+    border: 1px solid #333;
+    border-radius: 5px;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Textarea Styling */
+textarea {
+    flex-grow: 1;
+    border: 1px solid #444;
+    border-radius: 5px;
+    resize: none;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+/* Output Textarea */
+#output {
+    width: 100%;
+    height: 70%;
+    resize: none;
+    border: none;
+    background-color: inherit; /* Inherits background from parent */
+    color: inherit; /* Inherits text color from parent */
+}
+
+/* User Input Textarea */
+#user-input {
+    width: 100%;
+    height: 30%;
+    resize: none;
+    border-radius: 5px;
+    margin-top: 0.5em;
+    padding: 0.5em;
+}
+
+/* Headers within Sections */
+.algo-header, .source-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+/* Button and Dropdown Styling */
+.green-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.green-btn:hover {
+    background-color: #45a049;
+}
+
+#algo-mode, #language {
+    padding: 0.3em;
+}
+
+/* Question Area */
+#question-area {
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+/* CodeMirror Styling for Syntax Highlighting */
+.CodeMirror {
+    height: 100%; /* Full height for the CodeMirror editor */
+}
+
+.CodeMirror-scroll {
+    background-color: inherit;
+}
+
+.CodeMirror-selected {
+    background: #4CAF50;
+    color: #FFFFFF;
+}
+
+/* CodeMirror Gutter Styling */
+.CodeMirror-gutters {
+    background-color: inherit;
+    border-right: 1px solid #333;
+    color: #888;
+}
+
+/* CodeMirror Syntax Highlighting */
+.cm-keyword { color: #FF8C00; }
+.cm-string { color: #98FB98; }
+.cm-number { color: #FFD700; }
+.cm-variable { color: #87CEFA; }
+.cm-comment { color: #6A9955; }
+.cm-builtin { color: #C678DD; }
+.cm-operator { color: #56B6C2; }
+.cm-bracket { color: #00CED1; /* Cyan color for better visibility */ }
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    #output-section {
+        height: auto;
+    }
+}
+
+/* Add smooth transition for visual effect */
+#runButton {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="codemirror-5.65.18/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror-5.65.18/theme/darcula.css">
+    <title>Online IDE</title>
+</head>
+<body>
+    <header>
+        <span>Online IDE</span>
+        <select id="theme-mode" class="mode-select" onchange="toggleMode()">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+        </select>
+    </header>
+
+    <div class="main-container">
+        <div id="algo-section" class="section">
+            <div class="algo-header">
+                <select id="algo-mode">
+                    <option value="user-mode">User Mode</option>
+                    <option value="ask-questions">Ask Questions</option>
+                    <option value="algo_according_to_given_code">Algo According to Given Code</option>
+                </select>
+            </div>
+            <textarea id="algo-textarea" placeholder="Enter your algorithm here..."></textarea>
+            <div id="question-area">
+                <textarea id="question" placeholder="Ask your question here..."></textarea>
+                <button class="green-btn" id="submit-question">Submit Question</button>
+            </div>
+        </div>
+        <div id="source-code-section" class="section">
+            <div class="source-header">
+                <select id="language">
+                    <option value="c">C</option>
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                    <option value="cpp">C++</option>
+                </select>
+                <button class="green-btn" id="run-button">Run</button>
+            </div>
+            <!-- CodeMirror Textarea -->
+            <textarea id="source-code" placeholder="Write your code here..."></textarea>
+        </div>
+    </div>
+    
+    <div id="output-section" class="section">
+        <h2>Output</h2>
+        <!-- Read-only output area for displaying results -->
+        <textarea id="output" readonly placeholder="Output will be displayed here..."></textarea>
+        <!-- Hidden input area for user input, shown only when required -->
+        <textarea id="input" placeholder="Enter input for the code here..." style="display: none;"></textarea>
+    </div>
+    
+    <!-- CodeMirror JS -->
+    <script src="codemirror-5.65.18/lib/codemirror.js"></script>
+    <script src="codemirror-5.65.18/mode/javascript/javascript.js"></script>
+    <script src="codemirror-5.65.18/mode/python/python.js"></script>
+    <script src="codemirror-5.65.18/mode/clike/clike.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+    function toggleMode() {
+        // Retrieve the selected mode from the dropdown
+        const selectedMode = document.getElementById("theme-mode").value;
+        
+        // Remove both `dark-mode` and `light-mode` classes before applying the new one
+        document.body.classList.remove("dark-mode", "light-mode");
+
+        // Apply the selected mode
+        if (selectedMode === "dark") {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.add("light-mode");
+        }
+    }
+
+    // Set initial mode to light when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("theme-mode").value = "light";
+        document.body.classList.add("light-mode");
+    });
+    </script>
+</body>
+</html>
