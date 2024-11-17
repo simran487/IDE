@@ -6,14 +6,14 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const port = 3001;
+const port = 5500;
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5500', // Change this to your frontend URL
+    origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],// Change this to your frontend URL
 }));
 
 
@@ -33,6 +33,15 @@ app.post('/compile', async (req, res) => {
         java: 62,
     };
 
+    app.get('/', (req, res) => {
+        res.send('Backend is running!');
+    });
+       
+
+    app.use(express.static('public')); // If your frontend files are in the 'public' folder
+    app.use(express.static('public')); // If your frontend files are in the 'public' folder
+
+
     if (!langMap[language]) {
         return res.status(400).json({ error: "Unsupported language" });
     }
@@ -42,7 +51,7 @@ app.post('/compile', async (req, res) => {
             `${JUDGE0_URL}?base64_encoded=false&wait=true`,
             {
                 source_code: code,
-                stdin: stdin || '',
+                stdin: userInput || '',
                 language_id: langMap[language],
             },
             {
@@ -64,6 +73,13 @@ app.post('/compile', async (req, res) => {
         res.status(500).send({ error: "Server error" });
     }
 });
+
+
+// Supported Languages Route (Optional)
+app.get('/languages', (req, res) => {
+    res.json(Object.keys(langMap));
+});
+
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
