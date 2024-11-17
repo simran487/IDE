@@ -87,7 +87,7 @@ runButton.addEventListener("click", async () => {
   
     try {
       // Send POST request to backend
-      const response = await fetch("http://localhost:3000/compile", {
+      const response = await fetch("http://localhost:3001/compile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

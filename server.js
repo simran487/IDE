@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5500/public/index.html', // Change this to your frontend URL
+    origin: 'http://127.0.0.1:5500', // Change this to your frontend URL
 }));
 
 
